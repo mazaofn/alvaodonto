@@ -1,0 +1,44 @@
+/* Revelação contida. Estados ocultos SÓ existem sob .js-motion.
+   Sem a classe, tudo aparece no estado final aprovado.
+
+   IMPORTANTE: o clip-path vive num elemento interno (nunca no alvo do
+   IntersectionObserver) — o IO considera clip-path no cálculo de
+   interseção, e clipar o próprio alvo criaria um deadlock. */
+
+.rvRise {
+  transition:
+    opacity var(--dur-slow) var(--ease-out),
+    transform var(--dur-slow) var(--ease-out);
+}
+
+.rvClip {
+  transition: clip-path 0.9s var(--ease-out);
+}
+
+:global(.js-motion) .rvRise {
+  opacity: 0;
+  transform: translateY(12px);
+}
+
+:global(.js-motion) .rvClip {
+  clip-path: inset(0 0 100% 0);
+}
+
+:global(.js-motion) .inView.rvRise {
+  opacity: 1;
+  transform: none;
+}
+
+:global(.js-motion) .inView > .rvClip {
+  clip-path: inset(0 0 0 0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rvRise,
+  .rvClip {
+    opacity: 1 !important;
+    transform: none !important;
+    clip-path: none !important;
+    transition: none !important;
+  }
+}

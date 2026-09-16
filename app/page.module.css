@@ -1,0 +1,1012 @@
+/* ALVA — composição editorial. Regras, espaço e imagem; nada de cards. */
+
+.heroTitle em,
+.h2 em,
+.h2Major em,
+.h2Signature em,
+.ctaTitle em,
+.stepName em {
+  font-style: italic;
+  font-weight: 400;
+}
+
+/* ---------- compartilhados ---------- */
+
+.section {
+  padding-block: var(--section-space);
+}
+
+.sectionTight {
+  padding-block: calc(var(--section-space) * 0.7);
+}
+
+.index {
+  font-size: var(--text-label);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  margin: 0 0 var(--space-m);
+  display: flex;
+  align-items: center;
+  gap: var(--space-s);
+}
+
+.index::after {
+  content: "";
+  height: 1px;
+  width: 4rem;
+  background: var(--line-strong);
+}
+
+.h2 {
+  font-size: var(--text-h2);
+  max-width: 16ch;
+}
+
+/* Nível 2 — títulos principais das seções maiores. */
+.h2Major {
+  font-size: var(--text-h2-major);
+  max-width: 15ch;
+  margin: 0;
+  font-family: var(--font-display);
+  color: var(--ink);
+  line-height: 1.04;
+  font-weight: 420;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+.h2Major em {
+  font-style: italic;
+  font-weight: 400;
+}
+
+.h3 {
+  font-size: var(--text-h3);
+  font-family: var(--font-display);
+  letter-spacing: -0.01em;
+}
+
+.split {
+  display: grid;
+  gap: var(--space-m);
+  margin-bottom: var(--space-xl);
+}
+
+.standfirst {
+  font-size: var(--text-lead);
+  line-height: 1.7;
+  color: var(--ink-2);
+  max-width: 52ch;
+}
+
+.standfirstNarrow {
+  font-size: var(--text-lead);
+  max-width: 48ch;
+  margin: 0 0 var(--space-xl);
+}
+
+.standfirst a,
+.listNote a {
+  color: var(--accent);
+  text-underline-offset: 3px;
+}
+
+.caption {
+  font-size: var(--text-small);
+  color: var(--ink-3);
+  padding-top: var(--space-xs);
+  max-width: 46ch;
+}
+
+@media (min-width: 56rem) {
+  .split {
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: var(--space-2xl);
+    align-items: end;
+  }
+}
+
+/* ---------- botões (5 estados) ---------- */
+
+.btnDark,
+.btnDarkLarge {
+  background: var(--ink);
+  color: var(--on-dark);
+  text-decoration: none;
+  font-weight: 500;
+  display: inline-block;
+  transition:
+    background var(--dur) var(--ease),
+    transform var(--dur) var(--ease);
+}
+
+.btnDark {
+  font-size: var(--text-small);
+  padding: 0.85rem 1.5rem;
+}
+
+.btnDarkLarge {
+  font-size: 1rem;
+  padding: 1.05rem 2rem;
+}
+
+.btnDark:hover,
+.btnDarkLarge:hover {
+  background: var(--accent);
+}
+
+.btnDark:active,
+.btnDarkLarge:active {
+  transform: translateY(1px);
+}
+
+.btnLine,
+.btnLineLarge {
+  display: inline-block;
+  text-decoration: none;
+  color: var(--ink);
+  border-bottom: 1px solid var(--accent);
+  padding-bottom: 3px;
+  font-weight: 500;
+  transition:
+    color var(--dur) var(--ease),
+    border-color var(--dur) var(--ease);
+}
+
+.btnLine {
+  font-size: var(--text-small);
+  padding-top: 0.85rem;
+}
+
+.btnLineLarge {
+  font-size: 1rem;
+  padding: 1.05rem 0.25rem;
+}
+
+.btnLine:hover,
+.btnLineLarge:hover {
+  color: var(--accent);
+  border-color: var(--ink);
+}
+
+/* ---------- 01 hero ---------- */
+
+.hero {
+  padding-top: var(--space-xl);
+  border-bottom: 1px solid var(--line);
+  overflow: clip;
+}
+
+.heroGrid {
+  display: grid;
+  gap: var(--space-xl);
+}
+
+.kicker {
+  display: flex;
+  align-items: center;
+  gap: var(--space-s);
+  font-size: var(--text-label);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  margin: 0 0 var(--space-m);
+}
+
+.kickerLine {
+  display: inline-block;
+  width: 2.5rem;
+  height: 1px;
+  background: var(--accent);
+}
+
+.heroTitle {
+  font-size: var(--text-hero);
+  max-width: 12ch;
+}
+
+.lead {
+  margin-top: var(--space-m);
+  font-size: var(--text-lead);
+  max-width: 44ch;
+}
+
+.heroActions {
+  margin-top: var(--space-l);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-m);
+  align-items: baseline;
+}
+
+.heroSide {
+  position: relative;
+}
+
+.vertical {
+  display: none;
+}
+
+.heroReveal {
+  position: relative;
+}
+
+.heroFigure {
+  margin: 0;
+  position: relative;
+}
+
+.heroFigure img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  background: var(--surface-warm);
+}
+
+/* Legenda sobreposta à imagem: camada editorial, não texto solto. */
+.heroCaption {
+  position: absolute;
+  left: 0;
+  bottom: var(--space-m);
+  margin: 0;
+  max-width: 30ch;
+  background: var(--base);
+  border-top: 2px solid var(--accent);
+  padding: var(--space-s) var(--space-m);
+  font-size: var(--text-small);
+  color: var(--ink-2);
+}
+
+.careThread {
+  display: flex;
+  align-items: center;
+  gap: var(--space-s);
+  padding-block: var(--space-m);
+}
+
+.careDot {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 999px;
+  background: var(--accent);
+  flex: none;
+}
+
+.careTrack {
+  height: 1px;
+  flex: 1;
+  background: linear-gradient(to right, var(--accent-line), var(--line));
+}
+
+.careLabel {
+  font-size: var(--text-label);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  white-space: nowrap;
+}
+
+@media (min-width: 56rem) {
+  .heroGrid {
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: var(--space-2xl);
+    align-items: end;
+  }
+  .heroCopy {
+    padding-bottom: var(--space-2xl);
+    /* Sobreposição editorial: o título avança sobre a borda da imagem. */
+    position: relative;
+    z-index: 1;
+    margin-right: calc(-1 * var(--space-2xl));
+  }
+  .heroSide {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: var(--space-m);
+    align-items: stretch;
+  }
+  .vertical {
+    display: block;
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    font-size: var(--text-label);
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    margin: 0;
+    white-space: nowrap;
+  }
+}
+
+/* ---------- 02 trio (regras, não cards) ---------- */
+
+.trio {
+  display: grid;
+  gap: var(--space-xl);
+  border-top: 1px solid var(--line-strong);
+  padding-top: var(--space-xl);
+}
+
+.trioItem {
+  border-top: 2px solid var(--accent);
+  padding-top: var(--space-m);
+  max-width: 42ch;
+}
+
+.trioItem h3 {
+  margin-bottom: var(--space-xs);
+}
+
+.trioItem p {
+  font-size: 0.9rem;
+}
+
+@media (min-width: 56rem) {
+  .trio {
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-xl);
+  }
+}
+
+/* ---------- 03 tratamentos: índice ---------- */
+
+.treatList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid var(--line-strong);
+}
+
+.treatRow {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: var(--space-m);
+  align-items: baseline;
+  padding-block: var(--space-l);
+  border-bottom: 1px solid var(--line);
+  transition: background var(--dur) var(--ease);
+}
+
+.treatRow:hover {
+  background: var(--accent-soft);
+}
+
+.treatNum {
+  font-size: var(--text-small);
+  color: var(--clay);
+  letter-spacing: 0.08em;
+  font-variant-numeric: tabular-nums;
+}
+
+.treatMain {
+  display: grid;
+  gap: var(--space-2xs);
+}
+
+.treatName {
+  font-family: var(--font-display);
+  font-size: clamp(1.25rem, 1rem + 1.2vw, 1.6rem);
+  color: var(--ink);
+  letter-spacing: -0.01em;
+}
+
+.treatDesc {
+  font-size: 0.9rem;
+  max-width: 62ch;
+}
+
+.treatArrow {
+  color: var(--accent);
+  font-size: 1.25rem;
+  transition: transform var(--dur) var(--ease-out);
+}
+
+.treatRow:hover .treatArrow {
+  transform: translateX(6px);
+}
+
+.listNote {
+  margin-top: var(--space-m);
+  font-size: var(--text-small);
+  color: var(--ink-3);
+}
+
+/* ---------- sistema de numeração editorial ---------- */
+
+/* Contexto para fantasmas: recorte sem overflow da página. */
+.numSection {
+  position: relative;
+  overflow: clip;
+}
+
+.numSection > :global(.container) {
+  position: relative;
+  z-index: 1;
+}
+
+/* Camada do fantasma (invólucro do Reveal): ocupa a seção para o
+   IntersectionObserver disparar; o número vive posicionado dentro. */
+.ghostLayer {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.ghostBase {
+  position: absolute;
+  font-family: var(--font-display);
+  font-style: italic;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(37, 40, 36, 0.2);
+  user-select: none;
+}
+
+@supports not (-webkit-text-stroke: 1px black) {
+  .ghostBase {
+    color: rgba(37, 40, 36, 0.09);
+  }
+}
+
+/* 03 — direita, parcialmente cortado, dialogando com o índice. */
+.ghost03 {
+  top: var(--space-2xs);
+  right: calc(-1 * var(--space-xl));
+  font-size: clamp(7rem, 4rem + 11vw, 11rem);
+}
+
+/* 06 — embaixo à esquerda, cortado pela borda, atrás do duo. */
+.ghost06 {
+  left: calc(-1 * var(--space-s));
+  bottom: calc(-1 * var(--space-xl));
+  font-size: clamp(6.5rem, 4rem + 9vw, 10rem);
+}
+
+/* 09 — encerramento discreto no CTA: fecha o arco numérico. */
+.ghost09 {
+  right: calc(-1 * var(--space-s));
+  bottom: calc(-1 * var(--space-l));
+  font-size: clamp(5rem, 3rem + 7vw, 7.5rem);
+}
+
+@media (max-width: 55.99rem) {
+  .ghost03,
+  .ghost06 {
+    font-size: 4.25rem;
+  }
+  .ghost09 {
+    font-size: 3.75rem;
+  }
+}
+
+/* ---------- interlúdio: imagem dominante + bloco sobreposto ---------- */
+
+.interlude {
+  position: relative;
+  padding-bottom: var(--space-2xl);
+}
+
+.interludeFigure {
+  margin: 0;
+}
+
+.interludeFigure img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  background: var(--surface-warm);
+}
+
+.interludeOverlap {
+  margin-top: calc(-1 * var(--space-2xl));
+  position: relative;
+  z-index: 1;
+}
+
+.interludeOverlap > div {
+  background: var(--base);
+  border-top: 2px solid var(--accent);
+  padding: var(--space-l) var(--space-l) var(--space-m);
+  max-width: 38rem;
+}
+
+.interludeLabel {
+  font-size: var(--text-label);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--clay);
+  margin: 0 0 var(--space-s);
+}
+
+.interludeQuote {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 1.1rem + 1.8vw, 2.125rem);
+  line-height: 1.15;
+  letter-spacing: -0.015em;
+  color: var(--ink);
+  margin: 0;
+  text-wrap: balance;
+}
+
+.interludeQuote em {
+  font-style: italic;
+}
+
+@media (min-width: 56rem) {
+  .interludeFigure img {
+    aspect-ratio: 21 / 9;
+  }
+  .interludeOverlap > div {
+    margin-left: var(--space-2xl);
+    padding: var(--space-xl) var(--space-xl) var(--space-l);
+  }
+}
+
+@media (max-width: 55.99rem) {
+  .interludeFigure img {
+    aspect-ratio: 4 / 3;
+  }
+}
+
+/* ---------- 04 linha de cuidado ---------- */
+
+.careSection {
+  background: var(--surface-sage);
+  border-block: 1px solid var(--line);
+  padding-block: var(--section-space);
+}
+
+.journey {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--space-l);
+  position: relative;
+}
+
+.step {
+  position: relative;
+  padding-left: var(--space-xl);
+  padding-bottom: var(--space-l);
+  border-left: 1px solid var(--accent-line);
+}
+
+.step:last-child {
+  border-left-color: transparent;
+  padding-bottom: 0;
+}
+
+.stepDot {
+  position: absolute;
+  left: -0.3125rem;
+  top: 0.35rem;
+  width: 0.625rem;
+  height: 0.625rem;
+  border-radius: 999px;
+  background: var(--base);
+  border: 2px solid var(--accent);
+}
+
+.stepNum {
+  font-size: var(--text-label);
+  letter-spacing: 0.2em;
+  color: var(--clay);
+  margin: 0 0 var(--space-2xs);
+}
+
+.stepName {
+  font-size: 1.5rem;
+  margin-bottom: var(--space-2xs);
+}
+
+.stepText {
+  font-size: 0.9rem;
+  max-width: 46ch;
+}
+
+@media (min-width: 56rem) {
+  .journey {
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-l);
+  }
+  .step {
+    border-left: none;
+    border-top: 1px solid var(--accent-line);
+    padding-left: 0;
+    padding-top: var(--space-m);
+  }
+  .stepDot {
+    left: 0;
+    top: -0.3125rem;
+  }
+}
+
+/* ---------- 05 escuro: signature moment ---------- */
+
+.dark {
+  background: var(--dark);
+  color: var(--on-dark-2);
+  padding-block: var(--section-space);
+  position: relative;
+  overflow: clip;
+}
+
+/* Fantasma editorial: o índice da seção em escala monumental. */
+.ghost {
+  position: absolute;
+  top: var(--space-m);
+  left: max(var(--gutter), calc((100vw - var(--container)) / 2 + var(--gutter)));
+  z-index: 0;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: clamp(7rem, 4rem + 14vw, 14rem);
+  line-height: 1;
+  letter-spacing: -0.04em;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(250, 247, 241, 0.22);
+  pointer-events: none;
+  user-select: none;
+}
+
+@supports not (-webkit-text-stroke: 1px black) {
+  .ghost {
+    color: rgba(250, 247, 241, 0.1);
+  }
+}
+
+.darkGrid {
+  display: grid;
+  gap: var(--space-xl);
+  position: relative;
+  z-index: 1;
+}
+
+.indexDark {
+  font-size: var(--text-label);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--on-dark-2);
+  opacity: 0.8;
+  margin: 0 0 var(--space-m);
+  display: flex;
+  align-items: center;
+  gap: var(--space-s);
+}
+
+.indexDark::after {
+  content: "";
+  height: 1px;
+  width: 4rem;
+  background: rgba(250, 247, 241, 0.3);
+}
+
+.h2Signature {
+  color: var(--on-dark);
+  font-size: clamp(2.5rem, 1.5rem + 4.5vw, 4.5rem);
+  max-width: 12ch;
+}
+
+.darkBody {
+  margin-top: var(--space-m);
+  font-size: var(--text-lead);
+  max-width: 52ch;
+}
+
+.darkList {
+  list-style: none;
+  margin: var(--space-l) 0 0;
+  padding: 0;
+  display: grid;
+  gap: var(--space-s);
+}
+
+.darkList li {
+  padding-left: var(--space-m);
+  position: relative;
+  font-size: 0.975rem;
+  color: var(--on-dark);
+}
+
+.darkList li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.7em;
+  width: 0.5rem;
+  height: 1px;
+  background: var(--clay);
+}
+
+.darkCta {
+  display: inline-block;
+  margin-top: var(--space-l);
+  color: var(--on-dark);
+  font-weight: 500;
+  text-decoration: none;
+  border-bottom: 1px solid var(--clay);
+  padding-bottom: 3px;
+  transition:
+    color var(--dur) var(--ease),
+    border-color var(--dur) var(--ease);
+}
+
+.darkCta:hover {
+  color: var(--clay);
+  border-color: var(--on-dark);
+}
+
+.darkCtaArrow {
+  display: inline-block;
+  transition: transform var(--dur) var(--ease-out);
+}
+
+.darkCta:hover .darkCtaArrow {
+  transform: translateX(6px);
+}
+
+.darkFigure {
+  margin: 0;
+  position: relative;
+}
+
+.darkFigure img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  background: var(--dark-2);
+}
+
+/* Mesma linguagem do hero: legenda em bloco sobreposto à foto. */
+.darkCaption {
+  position: absolute;
+  left: 0;
+  bottom: var(--space-m);
+  margin: 0;
+  max-width: 30ch;
+  background: var(--dark);
+  border-top: 2px solid var(--clay);
+  padding: var(--space-s) var(--space-m);
+  font-size: var(--text-small);
+  color: var(--on-dark-2);
+}
+
+@media (min-width: 56rem) {
+  .darkGrid {
+    grid-template-columns: 0.95fr 1.05fr;
+    gap: var(--space-2xl);
+    align-items: center;
+  }
+  /* A imagem rompe o alinhamento: sobe acima do bloco de texto. */
+  .darkReveal {
+    margin-top: calc(-1 * var(--space-2xl));
+    position: relative;
+    z-index: 1;
+  }
+  /* …e escapa do grid até a borda da viewport. */
+  .darkFigure {
+    margin-right: calc(
+      -1 * var(--gutter) - max(0px, (100vw - var(--container)) / 2)
+    );
+  }
+  .darkFigure img {
+    aspect-ratio: 3 / 4;
+  }
+}
+
+/* ---------- 06 duo ---------- */
+
+.duo {
+  display: grid;
+  gap: var(--space-xl);
+}
+
+.duoFigure {
+  margin: 0;
+}
+
+.duoFigure img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  background: var(--surface-warm);
+}
+
+@media (min-width: 56rem) {
+  .duo {
+    grid-template-columns: 1.25fr 1fr;
+    gap: var(--space-2xl);
+    align-items: start;
+  }
+  .duoRevealMain img {
+    aspect-ratio: 16 / 11;
+  }
+  /* Quebra de grid: a segunda imagem invade a primeira, com recorte
+     em cor de fundo — impressão sobre impressão, sem sombra. */
+  .duoSecond {
+    position: relative;
+    z-index: 1;
+    margin-top: var(--space-3xl);
+    margin-left: calc(-1 * var(--space-2xl) - var(--space-l));
+  }
+  .duoSecond img {
+    border-top: var(--space-m) solid var(--base);
+    border-left: var(--space-m) solid var(--base);
+  }
+}
+
+/* ---------- 07 frentes ---------- */
+
+.fronts {
+  display: grid;
+  gap: 0;
+  border-top: 1px solid var(--line-strong);
+}
+
+.front {
+  padding-block: var(--space-xl);
+  border-bottom: 1px solid var(--line);
+  display: grid;
+  gap: var(--space-2xs);
+  max-width: 72ch;
+}
+
+.frontTag {
+  font-size: var(--text-label);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--clay);
+  margin: 0;
+}
+
+.front h3 {
+  margin-bottom: var(--space-2xs);
+}
+
+.front p {
+  font-size: 0.9rem;
+}
+
+@media (min-width: 56rem) {
+  .front {
+    grid-template-columns: 10rem 1fr 1.2fr;
+    gap: var(--space-l);
+    align-items: baseline;
+  }
+}
+
+/* ---------- 08 faq ---------- */
+
+.faqGrid {
+  display: grid;
+  gap: var(--space-xl);
+}
+
+.faqList {
+  display: grid;
+  gap: 0;
+  border-top: 1px solid var(--line-strong);
+}
+
+.faq {
+  border-bottom: 1px solid var(--line);
+}
+
+.faqQ {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--space-m);
+  padding-block: var(--space-m);
+  cursor: pointer;
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  color: var(--ink);
+  list-style: none;
+}
+
+.faqQ::-webkit-details-marker {
+  display: none;
+}
+
+.faqQ::marker {
+  content: "";
+}
+
+.faqQ:hover {
+  color: var(--accent);
+}
+
+.faqGlyph {
+  color: var(--accent);
+  font-size: 1.4rem;
+  line-height: 1;
+  flex: none;
+  transition: transform var(--dur) var(--ease-out);
+}
+
+.faq[open] .faqGlyph {
+  transform: rotate(45deg);
+}
+
+.faqA {
+  margin: 0;
+  padding-bottom: var(--space-m);
+  font-size: 0.975rem;
+  max-width: 62ch;
+}
+
+@media (min-width: 56rem) {
+  .faqGrid {
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: var(--space-2xl);
+    align-items: start;
+  }
+}
+
+/* ---------- 09 cta ---------- */
+
+.cta {
+  padding-block: var(--space-2xl) var(--section-space);
+}
+
+.ctaPanel {
+  background: var(--surface-sage);
+  border-top: 2px solid var(--accent);
+  padding: var(--space-2xl) var(--space-l);
+  position: relative;
+  overflow: clip;
+}
+
+.ctaPanel > *:not(.ghostLayer) {
+  position: relative;
+  z-index: 1;
+}
+
+.ctaRule {
+  display: flex;
+  align-items: center;
+  gap: var(--space-s);
+  margin-bottom: var(--space-l);
+}
+
+.ctaTitle {
+  font-size: clamp(2.5rem, 1.6rem + 4vw, 4rem);
+}
+
+.ctaBody {
+  margin-top: var(--space-m);
+  font-size: var(--text-lead);
+  max-width: 48ch;
+}
+
+.ctaActions {
+  margin-top: var(--space-xl);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-m) var(--space-xl);
+  align-items: center;
+}
+
+.ctaNote {
+  margin-top: var(--space-l);
+  font-size: var(--text-small);
+  color: var(--ink-3);
+  letter-spacing: 0.02em;
+}
+
+@media (min-width: 56rem) {
+  .ctaPanel {
+    padding: var(--space-3xl) var(--space-2xl);
+  }
+  .ctaTitle {
+    max-width: 14ch;
+  }
+}
